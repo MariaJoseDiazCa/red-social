@@ -1,26 +1,22 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import './App.css'
+
+import Showcase from './Showcase'
+import Author from './Author'
+
+const AUTHORS = Array.from({length: 10}).map((_, index) =>({
+	id: `author-${index}`,
+	name: 'Un Autor',
+	pic: 'http://placehold.it/128x128'
+}));
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+	<Showcase keyfn={item => item.id} items={AUTHORS} render={author =>
+		<Author details={author}/>
+			
+	} />
   );
 }
 
-export default App;
+export default App
