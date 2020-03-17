@@ -2,8 +2,6 @@ import React from 'react'
 
 import './Showcase.css'
 
-
-
 //patron:renderProps
 const Showcase = props =>
     <ul className="showcase">
