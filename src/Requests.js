@@ -1,5 +1,4 @@
 import React from 'react';
-
 import Showcase from './Showcase';
 import Author from './Author';
 
@@ -39,24 +38,17 @@ const SAMPLE_REQUESTS = [
     }
 ];
 
-const RequestsUI = props =>
-    <Showcase items={props.requests} keyFn={
-        author => author.uuid} render={author => 
-        <Author details={author}>
-            <button onClick={() => props.onAccept(author)}>Accept</button>
-            <button onClick={() => props.onDecline(author)}>Decline</button>
-        </Author>
-    }/>
-
 class Requests extends React.Component {
 	state = {requests: SAMPLE_REQUESTS};
 	render() {
 		return (
-		<RequestsUI requests=
-			{this.state.requests} 
-			onAccept={this.accept}
-			onDecline={this.decline}
-		/>
+            <Showcase items={this.state.requests} keyFn={
+                author => author.uuid} render={author => 
+                <Author details={author}>
+                    <button onClick={() => this.onAccept(author)}>Accept</button>
+                    <button onClick={() => this.onDecline(author)}>Decline</button>
+                </Author>
+            }/>
 		)
 	}
 	accept = author => 
