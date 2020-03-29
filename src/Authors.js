@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import './Authors.css'
-import Showcase from './Showcase'
-import Author from './Author'
+import Showcase from './Showcase';
+import Author from './Author';
+import { Link } from 'react-router-dom'
 
-const USERS_URL = 'https://randomuser.me/api/?seed=&results=100';
+const USERS_URL = 'https://randomuser.me/api?seed=abc&results=100';
 
 class Authors extends Component {
 	constructor () {
@@ -38,8 +39,10 @@ class Authors extends Component {
 		
 
 		return (
-			<Showcase keyfn={author => author.login.uuid} items={authors} render={author =>
-				<Author details={author}/>	
+			<Showcase keyFn={author => author.login.uuid} items={authors} render={author =>
+				<Link to={`/profile/${author.login.uuid}`}>
+					<Author details={author}/>	
+				</Link>
 			} />
 		);
  	}

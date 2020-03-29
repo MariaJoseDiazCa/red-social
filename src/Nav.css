@@ -1,0 +1,26 @@
+/* estilos bem */
+.Menu {
+    padding: 1em;
+    display: inline-block;
+}
+.Menu__link {
+    text-decoration: none;
+}
+
+.Menu__link--active {
+    color: red;
+}
+
+.Menu__options {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    display: flex;
+}
+
+.Menu__option {
+    cursor: pointer;
+    padding: 0.5em;
+}
+
+
