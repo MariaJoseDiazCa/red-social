@@ -23,4 +23,8 @@
     padding: 0.5em;
 }
 
+.Menu__option::last-children {
+    flex: 1;
+}
+
 

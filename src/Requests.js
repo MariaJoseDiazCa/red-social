@@ -36,9 +36,9 @@ class Requests extends React.Component {
     )
   }
   accept = author =>  {
-    const followers = JSON.parse(localStorage.getItem('followers')) || {}
+    const followers = JSON.parse(localStorage.getItem('followers')) || {} // "|| {}" significa que si no tiene valor por defecto es un objeto vacio.
     const loggedUser = JSON.parse(localStorage.getItem('user'))
-    const currentFollowers = followers[loggedUser.login.uuid] || []
+    const currentFollowers = followers[loggedUser.login.uuid] || [] // "|| []" significa que si no tiene valor por defecto es un array vacio.
     followers[loggedUser.login.uuid] = [
       ...currentFollowers,
       author.login.uuid
