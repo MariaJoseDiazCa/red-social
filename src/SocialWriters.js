@@ -2,12 +2,40 @@ import React from 'react';
 import Routes from './Routes';
 import Nav from './Nav'
 
-export default props =>
+import LoginContext from './LoginContext'
 
-<>
-	<Nav/>
-	<Routes/>
-</>
+// const {Provider} = LoginContext
+
+export default class extends React.Component {
+	state = { logged: Boolean(localStorage.getItem('user'))}
+	render () {
+		return(
+			
+			<LoginContext.Provider value={{
+				logged:this.state.logged,
+				login: this.login,
+				logout: this.logout
+				}}>
+				<Nav />
+				<Routes />
+			</LoginContext.Provider>
+
+		)
+	}
+	login = user =>{
+		localStorage.setItem('user', JSON.stringify(user))
+		this.setState({logged: true})
+	}
+
+	logout = user => {
+		this.setState({logged: false})
+		localStorage.removeItem('user')
+
+	}
+}
+
+
+
 
 // Estas dos expresiones son equivalentes:
 

@@ -2,6 +2,7 @@ import React from 'react'
 import { NavLink } from 'react-router-dom'
 
 import './Nav.css'
+import LoginContext from './LoginContext'
 
 export default props =>
 
@@ -18,10 +19,14 @@ export default props =>
         <li className="Menu__option">
             <NavLink activeClassName="menu__link--active" className="Menu__link" to='/subscribers'>Subscribers</NavLink>
         </li>
-        <li className="Menu__option" onClick={logout}>
-            Logout
-        </li>
+        <LoginContext.Consumer>
+            {
+                ({logout})=>
+                <li className="Menu__option" onClick={logout}>
+                    Logout
+                </li>
+            }
+        </LoginContext.Consumer>
+        
     </ul>
 </nav>
-
-const logout = () => localStorage.removeItem('user')

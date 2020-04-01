@@ -10,7 +10,7 @@ import Requests from './Requests';
 
 export default props => 
 <Switch>
-    <Route exact path='/' component={Authors}/>
+    <Route exact path='/' render={() => <Authors/>}/>
     <Route exact path='/login' component={Login}/>
     <Route exact path='/profile' component={Profile}/>
     <Route exact path='/profile/:uuid' component={AuthorProfile}/>
