@@ -2,8 +2,7 @@ import React, { Component } from 'react';
 import './Authors.css'
 import Showcase from './Showcase';
 import Author from './Author';
-import { Link, Redirect } from 'react-router-dom'
-import LoginContext from './LoginContext'
+import { Link } from 'react-router-dom'
 
 const USERS_URL = 'https://randomuser.me/api?seed=abc&results=100';
 
@@ -39,23 +38,24 @@ class Authors extends Component {
 		if(error){
 			return <p>Error 500!</p>	
 		}
-		
 
 		return (
-			<LoginContext.Consumer>
-				{
-					({logged}) =>
-						logged
-							? <Showcase keyFn={author => author.login.uuid} items={authors} render={author =>
-								<Link to={`/profile/${author.login.uuid}`}>
-									<Author details={author}/>	
-								</Link>
-							} />
-							: <Redirect to='/login'/>
-				}
-			</LoginContext.Consumer>
+
+			<Showcase keyFn={author => author.login.uuid} items={authors} render={author =>
+				<Link to={`/profile/${author.login.uuid}`}>
+					<Author details={author}>
+						<button onClick={event => {
+							event.preventDefault()
+							// event.stopPropagation()
+							alert('hola')
+						}}>
+							Saludar
+						</button>
+					</Author>	
+				</Link>
+			} />
 		);
  	}
 }
 
-export default Authors;
+export default Authors

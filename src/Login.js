@@ -2,8 +2,6 @@ import React from 'react'
 import LoginContext from './LoginContext'
 import { Redirect } from 'react-router'
 
-const USERS_URL = 'https://randomuser.me/api?seed=abc&results=100'
-
 // se importaría por
 // import {Login} from 'Login'
 export class Login extends React.Component {
@@ -58,18 +56,13 @@ export class Login extends React.Component {
       return this.setState({error: true, hasChange: false})
     }
     this.setState({busy: true})
-    const response = await fetch(USERS_URL)
-    const {results: users } = await response.json()
-    const found = users.find(candidate =>
-      candidate.login.username === user &&
-      candidate.login.password === password
-    )
-    this.setState({busy: false})
-    if (!found) {
-      return this.setState({loginError: true})
+    try {
+      void await this.props.onLogin({user, password})
+    } catch (loginError) {
+      return this.setState({loginError: true, busy: false})
+    } finally {
+      // this.setState({busy: false})
     }
-    this.props.onSuccess(found)
-    // alert(JSON.stringify(found))
   }
 }
 
@@ -79,9 +72,9 @@ export class Login extends React.Component {
 export default props => 
   <LoginContext.Consumer>
   {
-    ({login, logged}) =>
+    ({login, logged }) =>
       logged
         ? <Redirect to='/' />
-        : <Login onSuccess={login} />
+        : <Login onLogin={login} />
   }
   </LoginContext.Consumer>
