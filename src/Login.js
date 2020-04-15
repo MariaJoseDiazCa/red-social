@@ -5,7 +5,9 @@ import { Redirect } from 'react-router'
 // se importaría por
 // import {Login} from 'Login'
 export class Login extends React.Component {
+
   state = {user: '', password: ''}
+
   render() {
     // terms no está en state, por lo que es undefined. Al renderizar se convierte a false
     // const {user, password, terms, error, hasChange, loginError} = this.state
